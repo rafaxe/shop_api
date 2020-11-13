@@ -3,13 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Backoffice.Data;
-using Backoffice.Models;
 using Microsoft.AspNetCore.Authorization;
+using Shop.Data;
+using Shop.Models;
 
-namespace Backoffice.Controllers
+namespace Shop.Controllers
 {
-    [Route("products")]
+    [Route("v1/products")]
     public class ProductController : Controller
     {
         [HttpGet]
@@ -41,7 +41,7 @@ namespace Backoffice.Controllers
 
         [HttpPost]
         [Route("")]
-        // [Authorize(Roles = "employee")]
+        [Authorize(Roles = "employee")]
         public async Task<ActionResult<Product>> Post(
             [FromServices] DataContext context,
             [FromBody]Product model)
