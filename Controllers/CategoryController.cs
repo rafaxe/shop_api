@@ -10,11 +10,12 @@ using Microsoft.EntityFrameworkCore;
 public class CategoryController : ControllerBase 
 {
     [HttpGet]
+
     [Route("")]
     public async Task<ActionResult<List<Category>>> Get([FromServices]DataContext context)
     {
         var categories = await context.Categories.AsNoTracking().ToListAsync();
-        return Ok(new Category());
+        return Ok(categories);
     }
 
     [HttpGet]
