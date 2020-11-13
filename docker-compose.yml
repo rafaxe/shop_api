@@ -10,9 +10,9 @@ services:
     volumes:
     - './:/app'
     depends_on:
-        - db
+    - db
   db:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: "mcr.microsoft.com/mssql/server"
     hostname: sql-server
     container_name: sql-server
     ports:
@@ -20,4 +20,6 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=123(!)Password
-      - MSSQL_PID=Express
+      # - MSSQL_PID=Express
+    volumes:
+      - ~/mssql-server-data:/var/opt/mssql/data
